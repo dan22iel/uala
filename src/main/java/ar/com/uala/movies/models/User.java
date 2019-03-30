@@ -5,6 +5,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import ar.com.uala.movies.models.Notification.Type;
 
 public class User {
 	
@@ -76,9 +79,11 @@ public class User {
 		this.notifications = notifications;
 	}
 	
+	
 	public Boolean watchSomeinteresting() {
 		return products.parallelStream().anyMatch(Product::isInteresting);
 	}
+	
 	
 	public List<Product> getRecomendaciones(final List<Product> products) {
 		if (state == State.TRISTE)
@@ -93,5 +98,31 @@ public class User {
 		
 		return products;
 			
+	}
+	
+	
+	public Boolean isRegister(final Type type) {
+		return this.notifications
+				.parallelStream().anyMatch(u -> u.getType().equals(type));
+	}
+	
+	public void activarNotificacion(final Type type) {		
+		if(isRegister(type)){
+			this.notifications.forEach(n -> {
+				if(n.getType().equals(type)) {
+					n.setActive(true);
+				}
+			});
+		}
+	}
+	
+	public void desactivarNotificacion(final Type type) {
+		if(isRegister(type)){
+			this.notifications.forEach(n -> {
+				if(n.getType().equals(type)) {
+					n.setActive(false);
+				}
+			});
+		}
 	}
 }

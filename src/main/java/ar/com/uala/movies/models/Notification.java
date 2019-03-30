@@ -54,10 +54,5 @@ public class Notification {
 	}
 
 
-	public Boolean isRegister(final User user, final Type type) {
-		return user.getNotifications()
-				.parallelStream().anyMatch(u -> u.getType().equals(type));
-	}
-	
-	
+
 }

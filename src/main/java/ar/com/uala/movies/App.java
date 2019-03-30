@@ -37,11 +37,11 @@ public class App {
 		final User user = new User(User.State.MELANCOLICO, Arrays.asList(products.get(1)), notifications);
 
 		final Boolean isOld = user.isOld();
+		user.getNotifications();
 		System.out.println("Saber si un cliente es un antiguo. Lo es cuando solo mira productos viejos -  " + isOld);
 		
 		System.out.println("Saber si un cliente mira algo interesante " + user.watchSomeinteresting());
-		
-		
+				
 		System.out.println("Poder pedirle recomendaciones al sistema" + user.getRecomendaciones(products));
 	}
 }
